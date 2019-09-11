@@ -224,3 +224,5 @@ dmypy.json
 .idea/
 cadata.sql
 cadata.csv
+
+dumps/
