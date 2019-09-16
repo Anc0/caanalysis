@@ -81,7 +81,11 @@ def loadCsv(inputfilename, servername, user, password, dbname, metric,
                 try:
                     datetime_naive = datetime.datetime.strptime(row[timecolumn], '%Y-%m-%d %H:%M:%S+02')
                 except ValueError:
-                    datetime_naive = datetime.datetime.strptime(row[timecolumn], '%Y-%m-%d %H:%M:%S.%f+00')
+                    try:
+                        datetime_naive = datetime.datetime.strptime(row[timecolumn], '%Y-%m-%d %H:%M:%S+00')
+                    except ValueError:
+                        datetime_naive = datetime.datetime.strptime(row[timecolumn], '%Y-%m-%d %H:%M:%S.%f+00')
+                        
                 
             datetime_local = timezone(datatimezone).localize(datetime_naive)
 
